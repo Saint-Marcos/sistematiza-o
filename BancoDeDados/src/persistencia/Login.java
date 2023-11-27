@@ -44,11 +44,8 @@ public class Login extends JFrame{
         btnLogin.setForeground(Color.WHITE);
         add(btnLogin);
         
-        ImageIcon imagemLogin = new ImageIcon(getClass().getResource("/imagens/LOGIN.jpg"));
-        Image image = imagemLogin.getImage();
-        Image newImage = image.getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH); 
-        ImageIcon newIcon = new ImageIcon(newImage);
-        JLabel labelImagem = new JLabel(newIcon);
+        ImageIcon imagemLogin = new ImageIcon(getClass().getResource("/imagens/autenticação.png"));
+        JLabel labelImagem = new JLabel(imagemLogin);
         labelImagem.setBounds(350, 0, 200, 200);
         add(labelImagem);
 		
