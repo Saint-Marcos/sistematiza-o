@@ -23,17 +23,18 @@ public class Interface extends JFrame implements ActionListener{
 		heading.setForeground(Color.WHITE);
 		add(heading);
 		
+		
 		ImageIcon imagemFundo = new ImageIcon(getClass().getResource("/imagens/Tela-Inicial.jpg")); 
         JLabel labelImagem = new JLabel(imagemFundo);
         labelImagem.setBounds(0, 0, 720, 720); 
         add(labelImagem);
         
-        JButton btnContinuar = new JButton("Continuar");
-        btnContinuar.setBounds(300, 620, 150, 40);
-        btnContinuar.setBackground(Color.BLACK);
-        btnContinuar.setForeground(Color.WHITE);
-        btnContinuar.addActionListener(this);
-        add(btnContinuar);
+        JButton btnAcessar = new JButton("ACESSAR");
+        btnAcessar.setBounds(300, 620, 150, 40);
+        btnAcessar.setBackground(Color.DARK_GRAY);
+        btnAcessar.setForeground(Color.WHITE);
+        btnAcessar.addActionListener(this);
+        add(btnAcessar);
         
 		setSize(720, 720);
 		setLocation(200, 50);
