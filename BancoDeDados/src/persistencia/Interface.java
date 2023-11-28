@@ -30,7 +30,7 @@ public class Interface extends JFrame implements ActionListener{
         add(labelImagem);
         
         JButton btnAcessar = new JButton("ACESSAR");
-        btnAcessar.setBounds(300, 620, 150, 40);
+        btnAcessar.setBounds(285, 620, 150, 40);
         btnAcessar.setBackground(Color.DARK_GRAY);
         btnAcessar.setForeground(Color.WHITE);
         btnAcessar.addActionListener(this);

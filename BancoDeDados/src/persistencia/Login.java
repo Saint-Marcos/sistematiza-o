@@ -1,7 +1,6 @@
 package persistencia;
 
 import java.awt.Color;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
@@ -77,6 +76,7 @@ public void actionPerformed(ActionEvent ae) {
 		ResultSet rs = c.s.executeQuery(query);
 		if (rs.next()) {
 			setVisible(false);
+			new Inicio ();
 		} else {
 			JOptionPane.showMessageDialog(null, "O usuário ou senha estão incorretos");
 			setVisible(false);
