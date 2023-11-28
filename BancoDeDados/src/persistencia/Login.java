@@ -2,15 +2,21 @@ package persistencia;
 
 import java.awt.Color;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.ResultSet;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-public class Login extends JFrame{
+public class Login extends JFrame implements ActionListener {
 
+	JTextField tfusuario, tfsenha; 
+	
 	Login(){
 		
 		getContentPane().setBackground(Color(251, 253, 250));
@@ -21,7 +27,7 @@ public class Login extends JFrame{
 		lblusuario.setBounds(40, 20, 100, 30);
 		add(lblusuario);
 		
-		JTextField tfusuario = new JTextField();
+		tfusuario = new JTextField();
 		tfusuario.setBounds(150, 20, 150, 30);
 		tfusuario.setBackground(Color(251, 253, 250));
 		tfusuario.setForeground(Color.DARK_GRAY);
@@ -32,7 +38,7 @@ public class Login extends JFrame{
 		lblsenha.setBounds(40, 70, 100, 30);
 		add(lblsenha);
 		
-		JTextField tfsenha = new JTextField();
+		tfsenha = new JTextField();
 		tfsenha.setBounds(150, 70, 150, 30);
 		tfsenha.setBackground(Color(251, 253, 250));
 		tfsenha.setForeground(Color.DARK_GRAY);
@@ -42,6 +48,7 @@ public class Login extends JFrame{
         btnLogin.setBounds(150, 140, 150, 30);
         btnLogin.setBackground(Color.DARK_GRAY);
         btnLogin.setForeground(Color.WHITE);
+        btnLogin.addActionListener(this);
         add(btnLogin);
         
         ImageIcon imagemLogin = new ImageIcon(getClass().getResource("/imagens/autenticação.png"));
@@ -59,9 +66,28 @@ private Color Color(int i, int j, int k) {
 		return null;
 	}
 
+public void actionPerformed(ActionEvent ae) {
+	try {
+		String usuario = tfusuario.getText();
+		String senha = tfsenha.getText();
+		
+		Conn c = new Conn();
+		String query = "SELECT usuario, senha\r\n" + "FROM public.login\r\n";
+		
+		ResultSet rs = c.s.executeQuery(query);
+		if (rs.next()) {
+			setVisible(false);
+		} else {
+			JOptionPane.showMessageDialog(null, "O usuário ou senha estão incorretos");
+			setVisible(false);
+		}
+		
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+}
+
 public static void main (String[] args) {
 		new Login();
 	}
 }
-	
-
