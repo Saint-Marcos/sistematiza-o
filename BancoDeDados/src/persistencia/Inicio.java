@@ -61,6 +61,8 @@ public class Inicio extends JFrame implements ActionListener {
 	
 	public void actionPerformed (ActionEvent ae) {
 		if (ae.getSource() == adicionar) {
+			setVisible(false);
+			new Adicionar();
 		}
 		
 		else if (ae.getSource() == ver) {

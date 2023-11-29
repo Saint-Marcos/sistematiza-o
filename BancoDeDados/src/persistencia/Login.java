@@ -71,7 +71,7 @@ public void actionPerformed(ActionEvent ae) {
 		String senha = tfsenha.getText();
 		
 		Conn c = new Conn();
-		String query = "SELECT usuario, senha\r\n" + "FROM public.login\r\n";
+		String query = "SELECT usuario, senha FROM public.login;";
 		
 		ResultSet rs = c.s.executeQuery(query);
 		if (rs.next()) {
