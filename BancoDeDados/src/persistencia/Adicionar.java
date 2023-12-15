@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -15,9 +16,13 @@ import javax.swing.SwingConstants;
 
 public class Adicionar extends JFrame implements ActionListener {
 
+    Random ran = new Random();
+    int number = ran.nextInt(999999);
+	
 	JTextField tfnome, tfcpf;
 	JComboBox cbcarga;
 	JButton adicionarfun, voltar;
+	JLabel lblfunId;
 	
 	Adicionar() {
 		
@@ -58,6 +63,16 @@ public class Adicionar extends JFrame implements ActionListener {
 		cbcarga.setBounds(200, 250, 150, 30);
 		add(cbcarga);
 		
+		JLabel labelfunId = new JLabel("id Funcionário");
+	    labelfunId.setBounds(50, 400, 150, 30);
+		labelfunId.setFont(new Font("serif", Font.PLAIN, 20));
+	    add(labelfunId);
+	        
+	     lblfunId = new JLabel("" + number);
+	     lblfunId.setBounds(200, 400, 150, 30);
+	     lblfunId.setFont(new Font("serif", Font.PLAIN, 20));
+	     add(lblfunId);
+		
 		adicionarfun = new JButton ("Adicionar Funcionário");
 		adicionarfun.setBounds(150, 600, 160, 40);
 		adicionarfun.addActionListener(this);
@@ -83,16 +98,19 @@ public class Adicionar extends JFrame implements ActionListener {
 			String nome = tfnome.getText();
 			String cpf = tfcpf.getText();
 			String carga = (String) cbcarga.getSelectedItem();
+			String id = lblfunId.getText();
 			
 			try {
 				Conn conn = new Conn();
-				String query = "INSERT INTO public.controle (nome, cpf, carga) VALUES('"+nome+"', '"+cpf+"', '"+carga+"');";
+				String query = "INSERT INTO public.controle (nome, cpf, carga, id) VALUES('"+nome+"', '"+cpf+"', '"+carga+"', '"+id+"');";
 				conn.s.executeUpdate(query);
 				JOptionPane.showMessageDialog(null, "Funcionário adicionado com sucesso");
 				setVisible(false);
 				new Inicio();
 			} catch (Exception e) {
 				e.printStackTrace();
+				JOptionPane.showMessageDialog(null, "Erro ao adicionar o funcionário, verifique se os dados estão corretos. Nome tem sua extensão máxima de 20 characteres");
+
 			}
 		} else {
 			setVisible(false);
